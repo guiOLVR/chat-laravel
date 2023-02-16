@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users', function (Request $request){
-    return 'Olá Mundo';    
+Route::get('/users', function (Request $request) {
+    return view('users.index');
+})->name('users');;
+
+Route::post('/users/store', [UserController::class, 'store']);
+
+Route::get('users/create', function () {
+    return view('users.create');
 });

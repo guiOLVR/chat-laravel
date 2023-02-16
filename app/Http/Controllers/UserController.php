@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -13,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.index');
     }
 
     /**
@@ -23,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -34,7 +36,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Criação de um novo usuário com os dados de entrada
+        $user = new User;
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->password = Hash::make($request['password']);
+        $user->save();
+        // Redirecionamento de volta para a página de listagem de usuários
+        return redirect()->route('users')->with('success', 'Usuário criado com sucesso.');
     }
 
     /**

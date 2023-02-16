@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Add User Form - Laravel 9 CRUD</title>
+    <title>Adicionar Usuário</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -12,10 +12,10 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mb-2">
-                    <h2>Add User</h2>
+                    <h2>Adicionar Usuário</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                    <a class="btn btn-primary" href="/users"> Voltar</a>
                 </div>
             </div>
         </div>
@@ -24,13 +24,13 @@
             {{ session('status') }}
         </div>
         @endif
-        <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="\users\store" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>User Name:</strong>
-                        <input type="text" name="name" class="form-control" placeholder="User Name">
+                        <strong>Nome:</strong>
+                        <input type="text" name="name" class="form-control" placeholder="Nome">
                         @error('name')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -38,8 +38,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>User Email:</strong>
-                        <input type="email" name="email" class="form-control" placeholder="User Email">
+                        <strong>E-mail:</strong>
+                        <input type="email" name="email" class="form-control" placeholder="E-mail">
                         @error('email')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -47,8 +47,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>User Address:</strong>
-                        <input type="text" name="address" class="form-control" placeholder="User Address">
+                        <strong>Senha:</strong>
+                        <input type="password" name="password" class="form-control" placeholder="Senha">
                         @error('address')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
