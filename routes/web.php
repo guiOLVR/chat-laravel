@@ -19,12 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users', function (Request $request) {
-    return view('users.index');
-})->name('users');;
+Route::get('/users', [UserController::class, 'index'])->name('users');
 
 Route::post('/users/store', [UserController::class, 'store']);
-
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::get('users/create', function () {
     return view('users.create');
 });

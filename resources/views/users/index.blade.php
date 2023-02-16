@@ -15,7 +15,7 @@
                     <h2>Laravel 9 CRUD Example Tutorial</h2>
                 </div>
                 <div class="pull-right mb-2">
-                    <a class="btn btn-success" href="{{ route('users.create') }}"> Create User</a>
+                    <a class="btn btn-success" href="/users/create"> Create User</a>
                 </div>
             </div>
         </div>
@@ -30,7 +30,6 @@
                     <th>S.No</th>
                     <th>User Name</th>
                     <th>User Email</th>
-                    <th>User Address</th>
                     <th width="280px">Action</th>
                 </tr>
             </thead>
@@ -40,7 +39,6 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->address }}</td>
                     <td>
                         <form action="{{ route('users.destroy',$user->id) }}" method="Post">
                             <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
