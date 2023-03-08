@@ -38,14 +38,31 @@
                 @foreach ($users as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td>
+                        {{ $user->name }}
+                        @if($user->deleted_at)
+                        <!-- Dado desativado -->
+                        <br />
+                        <span class="text-danger">Excluído em {{ $user->deleted_at }}</span>
+                        @endif
+                    </td>
                     <td>{{ $user->email }}</td>
                     <td>
+                        @if($user->deleted_at)
+                        <form method="POST" action="{{ route('users.restore', $user->id) }}">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <button type="submit" class="btn btn-success">Ativar</button>
+                        </form>
+                        @else
+                        <!-- Dado ativo -->
                         <form method="POST" action="{{ route('users.softDelete', $user->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-warning">Desativar</button>
                         </form>
+                        @endif
                     </td>
                     <td>
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">

@@ -21,3 +21,4 @@ Route::get('/', function () {
 
 Route::resource('/users', UserController::class)->withTrashed();
 Route::delete('/users/{id}/softdelete', [UserController::class, 'softDelete'])->name('users.softDelete');
+Route::put('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');

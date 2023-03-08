@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::withTrashed()
+            ->orderByRaw('deleted_at ASC, name')
+            ->paginate(10);
         return view('users.index', ['users' => $users]);
     }
 
@@ -107,5 +109,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('users.index');
+    }
+    public function restore(User $user)
+    {
+        $user->restore();
+        return redirect()->back()->with('success', 'Usuário restaurado com sucesso.');
     }
 }
