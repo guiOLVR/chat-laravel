@@ -40,11 +40,11 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <form action="{{ route('users.destroy',$user->id) }}" method="Post">
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
                             <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Excluir</button>
                         </form>
                     </td>
                 </tr>
