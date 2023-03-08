@@ -44,7 +44,7 @@ class UserController extends Controller
         $user->password = Hash::make($request['password']);
         $user->save();
         // Redirecionamento de volta para a página de listagem de usuários
-        return redirect()->route('users')->with('success', 'Usuário criado com sucesso.');
+        return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso.');
     }
 
     /**
