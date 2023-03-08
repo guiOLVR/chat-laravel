@@ -27,10 +27,11 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>S.No</th>
-                    <th>User Name</th>
-                    <th>User Email</th>
-                    <th width="280px">Action</th>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th width="80px">Desativar</th>
+                    <th width="180px">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,10 +41,15 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
-                            <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                        <form method="POST" action="{{ route('users.softDelete', $user->id) }}">
                             @csrf
                             @method('DELETE')
+                            <button type="submit" class="btn btn-warning">Desativar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
+                            <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
                             <button type="submit" class="btn btn-danger">Excluir</button>
                         </form>
                     </td>
