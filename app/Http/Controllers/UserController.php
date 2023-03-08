@@ -66,7 +66,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -78,7 +79,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        if (!empty($request->input('password'))) {
+            $user->password = Hash::make($request->input('password'));
+        }
+        $user->save();
+        return redirect()->route('users.index', $user->id);
     }
 
     /**
