@@ -110,9 +110,10 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index');
     }
-    public function restore(User $user)
+
+    public function restore($id)
     {
-        $user->restore();
+        User::onlyTrashed()->find($id)->restore();
         return redirect()->back()->with('success', 'Usuário restaurado com sucesso.');
     }
 }
