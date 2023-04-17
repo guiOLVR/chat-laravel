@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/users', UserController::class)->withTrashed();
